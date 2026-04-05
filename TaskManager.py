@@ -1,20 +1,28 @@
 import json
+import os
+
+TASKS_FILE = "tasks.json"
 
 #add a load function
 def load_tasks():
+    if not os.path.exists(TASKS_FILE):
+        print("No existing task file found. Creating new one")
+        return []
     try:
-        with open("tasks.json", "r") as file:
+        with open(TASKS_FILE, "r") as file:
             return json.load(file)
-    except FileNotFoundError:
+    except json.JSONDecodeError:
+        print("Warning: tasks file is corrupted. Starting fresh.")
         return []
 
 #Add save Function
 def save_tasks(tasks):
-    with open("tasks.json", "w") as file:
-        json.dump(tasks, file)
+    with open(TASKS_FILE, "w") as file:
+        json.dump(tasks, file, indent=4)
 
 
 def main():
+    print (f"Current folder: {os.getcwd()}")
     tasks = load_tasks()
     while True:
         print ("\n --- Task Manager--")
@@ -34,7 +42,7 @@ def main():
             
         elif choice == "2":
             if not tasks:
-                (print("No tasks yet."))
+                print("No tasks yet.")
             else:
                 for i, task in enumerate(tasks):
                     status = "✓" if task["done"] else " "
@@ -44,7 +52,8 @@ def main():
                 print("No tasks to delete.")
             else:
                 for i, task in enumerate(tasks):
-                    print(f"{i+1}.{task}")
+                    status = "✓" if task["done"] else " "
+                    print(f"{i+1}.[{status}] {task['task']}]")
                 try:
                     task_num = int(input("Enter task number: "))
                     if 0< task_num <= len(tasks):
@@ -65,9 +74,8 @@ def main():
                 #update the tasks
             else:
                 for i, task in enumerate(tasks):
-                    
                     status = "✓" if task["done"] else " "
-                    print(f"{i+1}.[{status}] {task ["task"]}")
+                    print(f"{i+1}.[{status}] {task["task"]}")
                     
                 try:
                     task_num = int(input ("Enter task number to mark complete:"))

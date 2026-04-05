@@ -1,1 +1,6 @@
-[{"task": "Learn German", "done": true}, {"task": "Buy milk", "done": true}]
+[
+    {
+        "task": "Write shopping list",
+        "done": false
+    }
+]
