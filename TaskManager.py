@@ -59,10 +59,16 @@ def main():
         elif choice == "4":
             if not tasks:
                 print("No tasks available.")
+                #check if all tasks are complete
+            elif tasks and all(task["done"] for task in tasks):
+                print ("\n All Tasks have been completed")
+                #update the tasks
             else:
                 for i, task in enumerate(tasks):
+                    
                     status = "✓" if task["done"] else " "
                     print(f"{i+1}.[{status}] {task ["task"]}")
+                    
                 try:
                     task_num = int(input ("Enter task number to mark complete:"))
                     if 0< task_num <=len(tasks):
