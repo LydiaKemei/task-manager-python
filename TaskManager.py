@@ -5,6 +5,7 @@ TASKS_FILE = "tasks.json"
 
 #add a load function
 def load_tasks():
+    #check if file exists, if not create.
     if not os.path.exists(TASKS_FILE):
         print("No existing task file found. Creating new one")
         return []
@@ -28,19 +29,21 @@ def main():
         print ("\n --- Task Manager--")
         print("1. add Tasks")
         print("2. View Tasks")
-        print("3. Delete Tasks")
-        print("4. Mark Task as Complete")
-        print("5. Exit")
+        print("3. View Completed Tasks")
+        print("4. View Incomplete Tasks")
+        print("5. Delete Tasks")
+        print("6. Mark Task as Complete")
+        print("7. Exit")
 
         choice = input("choose an option: ")
-
+    #option 1: Add tasks
         if choice == "1":
             task = input("Enter a task: ")
             tasks.append({"task" : task, "done": False}) #adding as adictionary
             save_tasks(tasks)
             print("Task added!")
-            
-        elif choice == "2":
+    #option 2
+        elif choice == "2": #view tasks
             if not tasks:
                 print("No tasks yet.")
             else:
@@ -48,6 +51,26 @@ def main():
                     status = "✓" if task["done"] else " "
                     print(f"{i+1}.[{status}] {task['task']}")
         elif choice == "3":
+            completed_tasks = [task for task in tasks if task["done"]]
+
+            if not completed_tasks:
+                print("No completed tasks.")
+            else:
+                for i, task in enumerate(completed_tasks):
+                    print(f"{i+1}. [✓] {task['task']}")
+        #option 4
+        elif choice == "4": #View incomplete tasks
+            incomplete_tasks = [task for task in tasks if not task["done"]] #list comprehension
+
+            if not incomplete_tasks:
+                print("No incomplete tasks")
+            else:
+                for i, task in enumerate(incomplete_tasks):
+                    print(f"{i+1}. [ ] {task['task']}")
+
+    #option 5
+        elif choice == "5": #Delete tasks
+
             if not tasks:
                 print("No tasks to delete.")
             else:
@@ -65,7 +88,8 @@ def main():
                         print("Invalid Number")
                 except ValueError:
                     print("Please enter a number")
-        elif choice == "4":
+    #option 6: Mark as complete
+        elif choice == "6": #Mark as complete
             if not tasks:
                 print("No tasks available.")
                 #check if all tasks are complete
@@ -90,7 +114,7 @@ def main():
                     print ("Please enter a number: ")
 
 
-        elif choice == "5":
+        elif choice == "7":
             print("Goodbye!")
             break
         else:
