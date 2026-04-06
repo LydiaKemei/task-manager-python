@@ -1,6 +1,32 @@
 [
     {
-        "task": "Write shopping list",
-        "done": true
+        "task": "Cook",
+        "done": true,
+        "priority": "low"
+    },
+    {
+        "task": "Shop",
+        "done": false,
+        "priority": "low"
+    },
+    {
+        "task": "lean language",
+        "done": false,
+        "priority": "low"
+    },
+    {
+        "task": "Check updates",
+        "done": false,
+        "priority": "low"
+    },
+    {
+        "task": "Eat",
+        "done": false,
+        "priority": "high"
+    },
+    {
+        "task": "read",
+        "done": false,
+        "priority": "medium"
     }
 ]

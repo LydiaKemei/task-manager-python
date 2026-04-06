@@ -39,7 +39,14 @@ def main():
     #option 1: Add tasks
         if choice == "1":
             task = input("Enter a task: ")
-            tasks.append({"task" : task, "done": False}) #adding as adictionary
+            priority = input("Enter priority (high/medium/low): ").strip().lower()
+            if priority not in  ("high", "medium", "low"):
+                print("Invalid priority: Setting to 'low'")
+                priority = "low"
+            tasks.append({"task" : task, 
+                          "done": False,
+                          "priority": priority
+                          }) #adding as a dictionary
             save_tasks(tasks)
             print("Task added!")
     #option 2
@@ -47,26 +54,31 @@ def main():
             if not tasks:
                 print("No tasks yet.")
             else:
-                for i, task in enumerate(tasks):
+                priority_order = {"high": 1, "medium": 2, "low": 3}
+                sorted_tasks = sorted(tasks, key=lambda task: priority_order.get(task.get("priority", "low" )))
+                for i, task in enumerate(sorted_tasks):
                     status = "✓" if task["done"] else " "
-                    print(f"{i+1}.[{status}] {task['task']}")
+                    priority = task.get("priority", "low")
+                    print(f"{i+1}.[{status}] ({priority}) {task['task']}")
         elif choice == "3":
             completed_tasks = [task for task in tasks if task["done"]]
 
             if not completed_tasks:
                 print("No completed tasks.")
             else:
+                priority = task.get("priority", "low")
                 for i, task in enumerate(completed_tasks):
-                    print(f"{i+1}. [✓] {task['task']}")
+                    print(f"{i+1}. [✓] ({priority}) {task['task']}")
         #option 4
         elif choice == "4": #View incomplete tasks
             incomplete_tasks = [task for task in tasks if not task["done"]] #list comprehension
-
             if not incomplete_tasks:
                 print("No incomplete tasks")
             else:
                 for i, task in enumerate(incomplete_tasks):
-                    print(f"{i+1}. [ ] {task['task']}")
+                    status = "✓" if task["done"] else " "
+                    priority = task.get("priority", "low")
+                    print(f"{i+1}. [{status} ] ({priority}){task['task']}")
 
     #option 5
         elif choice == "5": #Delete tasks
@@ -76,7 +88,7 @@ def main():
             else:
                 for i, task in enumerate(tasks):
                     status = "✓" if task["done"] else " "
-                    print(f"{i+1}.[{status}] {task['task']}]")
+                    print(f"{i+1}.[{status}] {task['task']}")
                 try:
                     task_num = int(input("Enter task number: "))
                     if 0< task_num <= len(tasks):
@@ -99,7 +111,7 @@ def main():
             else:
                 for i, task in enumerate(tasks):
                     status = "✓" if task["done"] else " "
-                    print(f"{i+1}.[{status}] {task["task"]}")
+                    print(f"{i+1}.[{status}] {task['task']}")
                     
                 try:
                     task_num = int(input ("Enter task number to mark complete:"))
