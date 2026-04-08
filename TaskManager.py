@@ -33,7 +33,8 @@ def main():
         print("4. View Incomplete Tasks")
         print("5. Delete Tasks")
         print("6. Mark Task as Complete")
-        print("7. Exit")
+        print("7. Edit Task")
+        print("8. Exit")
 
         choice = input("choose an option: ")
     #option 1: Add tasks
@@ -134,8 +135,35 @@ def main():
                 except ValueError:
                     print ("Please enter a number: ")
 
-
         elif choice == "7":
+            if not tasks:
+                print("No tasks to edit.")
+            else:
+                for i, task in enumerate(tasks):
+                    status = "" if ["done"] else " "
+                    priority = task.get("priority", "low")
+                    print(f"{i+1}. [{status}] ({priority}]) - {task['task']}")
+                
+                try:
+                    task_num = int(input("Enter task number to edit: "))
+                    if 0 < task_num <= len(tasks):
+                        selected = tasks[task_num - 1]
+
+                        new_text = input("Enter new tasks (leave blank to keep the current)").lower()
+                        if new_text.strip():
+                            selected["task"] = new_text
+                        new_priority = input("Enter new priority (high/medium/low)").lower()
+                        if new_priority in ["high", "medium", "low"]:
+                            selected["priority"] = new_priority
+                        save_tasks(tasks)
+                        print("Task update successfully!")
+
+                    else:
+                        print("Invalid number")
+                except ValueError:
+                    print("Please enter a valid number")
+
+        elif choice == "8":
             print("Goodbye!")
             break
         else:

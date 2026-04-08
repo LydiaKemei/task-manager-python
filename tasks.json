@@ -1,6 +1,6 @@
 [
     {
-        "task": "Cook",
+        "task": "cook chapati",
         "done": true,
         "priority": "low"
     },
@@ -27,6 +27,6 @@
     {
         "task": "read",
         "done": false,
-        "priority": "medium"
+        "priority": "high"
     }
 ]
