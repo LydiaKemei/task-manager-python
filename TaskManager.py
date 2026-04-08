@@ -60,6 +60,15 @@ def main():
                     status = "✓" if task["done"] else " "
                     priority = task.get("priority", "low")
                     print(f"{i+1}.[{status}] ({priority}) {task['task']}")
+
+                completed = sum(task["done"] for task in tasks)
+                total = len(tasks)
+
+                if total > 0:
+                    percent = (completed/total) * 100
+                    print(f"Progress: {completed}/{total} tasks completed ({percent:.0f}%)")
+                bar = "█" * completed + "-" * (total - completed)
+                print(f"[{bar}]")
         elif choice == "3":
             completed_tasks = [task for task in tasks if task["done"]]
 

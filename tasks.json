@@ -11,7 +11,7 @@
     },
     {
         "task": "lean language",
-        "done": false,
+        "done": true,
         "priority": "low"
     },
     {
