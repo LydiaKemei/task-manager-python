@@ -1,0 +1,40 @@
+</> HTML
+
+<!DOCTYPE html>
+<html>
+    <head> 
+        <link="stylesheet" href="{{url_for('static', filename = 'styles.css')}}"
+        <title> Task Manager </title>
+    </head>
+    <body>
+        <h1>Task Manager</h1>
+        <form action  = "/add" method = "post">
+            <input type = "text" name = "task" placeholder = "Enter task" required>
+
+            <select name = "priority">
+                <option value= "high"> High </option>
+                <option value = "medium"> Medium </option>
+                <option value = "low"> Low</option>
+            </select>
+
+            <button types = "submit"> Add Task </button>
+        </form>
+        <hr>
+        <ul>
+            {% for task in tasks %}
+            <li>
+                {% if task.done %}
+                <span style="color: green;">✔</span>
+                {% else %}
+                <span style="color:red;">✘</span>
+                {% endif %}
+                    
+                <span class="priority{{task.priority}}">{{task.priority}} {{task.task}}</span>
+
+                <a href = "/complete/{{loop.index0}}">Complete </a>
+                <a href = "/delete/{{loop.index0}}"> Delete </a>
+            </li>
+            {%endfor %}
+        </ul>
+    </body>
+</html>

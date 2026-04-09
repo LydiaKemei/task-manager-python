@@ -21,12 +21,17 @@
     },
     {
         "task": "Eat",
-        "done": false,
+        "done": true,
         "priority": "high"
     },
     {
         "task": "read",
         "done": false,
+        "priority": "high"
+    },
+    {
+        "task": "Listen to News",
+        "done": true,
         "priority": "high"
     }
 ]
