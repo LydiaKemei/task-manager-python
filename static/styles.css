@@ -56,4 +56,26 @@ a:hover{
 .priority.low{
     color: green;
 }
+.header, .task-row{
+    display: grid;
+    grid-template-columns: 40px 80px 100px 1fr 150px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+}
+.header{
+    font-weight: bold;
+    background-color: #ddd;
+    border-radius: 8px;
+}
+.task-row{
+    background: white;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+.task-row span{
+    text-align: center;
+}
 

@@ -15,6 +15,7 @@ def load_tasks():
 def save_tasks(tasks):
     with open(TASKS_FILE, "w") as f:
         json.dump(tasks, f, indent = 4)
+        #routes that URL Responds to
 @app.route("/")
 def index():          
     tasks = load_tasks()
@@ -48,6 +49,20 @@ def delete(task_id):
     tasks.pop(task_id)
     save_tasks(tasks)
     return redirect("/")
+
+@app.route("/edit/<int:task_id>", methods=["GET", "POST"])
+def edit(task_id):
+    tasks = load_tasks()
+
+    if request.method == "POST":
+        new_task = request.form["task"]
+        new_priority = request.form["priority"]
+
+        tasks[task_id]["task"] = new_task
+        tasks[task_id]["priority"] = new_priority
+        save_tasks(tasks)
+        return redirect("/")
+    return render_template("edit.html", task=tasks[task_id], task_id=task_id)
 
 if __name__ == "__main__":
     app.run(debug = True)

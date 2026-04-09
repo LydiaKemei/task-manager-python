@@ -7,7 +7,7 @@
     {
         "task": "Shop",
         "done": false,
-        "priority": "low"
+        "priority": "medium"
     },
     {
         "task": "lean language",
@@ -33,5 +33,10 @@
         "task": "Listen to News",
         "done": true,
         "priority": "high"
+    },
+    {
+        "task": "Cook",
+        "done": true,
+        "priority": "low"
     }
 ]

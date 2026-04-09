@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head> 
-        <link="stylesheet" href="{{url_for('static', filename = 'styles.css')}}"
+        <link rel="stylesheet" href="{{url_for('static', filename = 'styles.css')}}"
         <title> Task Manager </title>
     </head>
     <body>
@@ -12,27 +12,39 @@
             <input type = "text" name = "task" placeholder = "Enter task" required>
 
             <select name = "priority">
+                <option value="" disabled selected hidden>Select Priority</option>
                 <option value= "high"> High </option>
                 <option value = "medium"> Medium </option>
                 <option value = "low"> Low</option>
             </select>
 
-            <button types = "submit"> Add Task </button>
+            <button type = "submit"> Add Task </button>
         </form>
         <hr>
+        <div class = "header">
+            <span>#</span>
+            <span>Status</span>
+            <span>Priority</span>
+            <span>Task</span>
+            <span>Actions</span>
+        </div>
         <ul>
             {% for task in tasks %}
-            <li>
+            <li class="task-row">
+                <span>{{ loop.index }}</span>
                 {% if task.done %}
                 <span style="color: green;">✔</span>
                 {% else %}
                 <span style="color:red;">✘</span>
                 {% endif %}
                     
-                <span class="priority{{task.priority}}">{{task.priority}} {{task.task}}</span>
-
+                <span class="priority {{ task.priority }}">{{task.priority}} </span>
+                <span>{{ task.task }}</span>
+                <span>
                 <a href = "/complete/{{loop.index0}}">Complete </a>
                 <a href = "/delete/{{loop.index0}}"> Delete </a>
+                <a href="/edit/{{ loop.index0 }}">Edit</a>
+                </span>
             </li>
             {%endfor %}
         </ul>
