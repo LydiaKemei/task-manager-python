@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 import json
 import os
 
 app = Flask(__name__) #the web app
+app.secret_key = "your_secret_key"
 
 TASKS_FILE = "tasks.json" #file handling
 
@@ -46,8 +47,13 @@ def complete(task_id):
 @app.route("/delete/<int:task_id>")
 def delete(task_id):
     tasks = load_tasks()
-    tasks.pop(task_id)
-    save_tasks(tasks)
+
+    if 0<=task_id < len(tasks):
+
+        tasks.pop(task_id)
+        save_tasks(tasks)
+        flash("Task deleted successfully")
+
     return redirect("/")
 
 @app.route("/edit/<int:task_id>", methods=["GET", "POST"])

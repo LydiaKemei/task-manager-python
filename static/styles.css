@@ -79,3 +79,13 @@ a:hover{
     text-align: center;
 }
 
+.flash_message{
+    width: 60%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 5px;
+    font-weight: bold;
+
+}

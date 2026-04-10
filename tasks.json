@@ -1,25 +1,5 @@
 [
     {
-        "task": "cook chapati",
-        "done": true,
-        "priority": "low"
-    },
-    {
-        "task": "Shop",
-        "done": false,
-        "priority": "medium"
-    },
-    {
-        "task": "lean language",
-        "done": true,
-        "priority": "low"
-    },
-    {
-        "task": "Check updates",
-        "done": false,
-        "priority": "low"
-    },
-    {
         "task": "Eat",
         "done": true,
         "priority": "high"
