@@ -78,14 +78,27 @@ a:hover{
 .task-row span{
     text-align: center;
 }
-
-.flash_message{
+.flash.message{
     width: 60%;
-    margin: 10px auto;
-    padding: 10px;
+    padding: 10px auto;
     background-color: #d4edda;
     color: #155724;
     border-radius: 5px;
     font-weight: bold;
+}
+.filters {
+    margin:8px 15px;
+}
+.filters a{
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+}
+.filters a:hover{
+    background-color: #0056b3;
 
 }
+
+

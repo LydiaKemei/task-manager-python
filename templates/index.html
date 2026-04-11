@@ -7,20 +7,29 @@
         <title> Task Manager </title>
     </head>
     <body>
+
         <h1>Task Manager</h1>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="flash-message">
-            <p>{{ message }}</p>
-            {% endfor %}
+<!filter the tasks>
+        <div class="filters">
+            <a href="/?filter=all">All</a>
+            <a href="/?filter=completed">Completed</a>
+            <a href="/?filter=incomplete">Incomplete</a>
         </div>
-        {% endif %}
+        <!Display message>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flash-message">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
         {% endwith %}
+
         <form action  = "/add" method = "post">
             <input type = "text" name = "task" placeholder = "Enter task" required>
 
-            <select name = "priority">
+            <select name = "priority" required>
                 <option value="" disabled selected hidden>Select Priority</option>
                 <option value= "high"> High </option>
                 <option value = "medium"> Medium </option>

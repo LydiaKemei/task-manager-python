@@ -1,22 +1,32 @@
 [
     {
-        "task": "Eat",
+        "task": "Shop fur Gemuse",
         "done": true,
-        "priority": "high"
+        "priority": "low"
     },
     {
-        "task": "read",
+        "task": "Learn",
+        "done": false,
+        "priority": "medium"
+    },
+    {
+        "task": "Cook",
+        "done": false,
+        "priority": "medium"
+    },
+    {
+        "task": "Grade",
         "done": false,
         "priority": "high"
     },
     {
-        "task": "Listen to News",
-        "done": true,
+        "task": "Teach",
+        "done": false,
         "priority": "high"
     },
     {
-        "task": "Cook",
-        "done": true,
-        "priority": "low"
+        "task": "Clean",
+        "done": false,
+        "priority": "medium"
     }
 ]
